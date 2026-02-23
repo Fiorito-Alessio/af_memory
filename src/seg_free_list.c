@@ -78,12 +78,22 @@ struct chunk_header *get_chunk(size_t size)
     }
 
     size_t index = get_bucket_index(size);
-    struct chunk_header *chunk = buckets_list[index];
-    if (chunk != NULL)
+
+    for (; index < NUM_BUCKETS; index++)
     {
-        remove_chunk(buckets_list[index]);
+        struct chunk_header *chunk = buckets_list[index];
+
+        while (chunk != NULL)
+        {
+            if (get_size(chunk->size) >= size)
+            {
+                remove_chunk(chunk);
+                return chunk;
+            }
+            chunk = chunk->next;
+        }
     }
 
-    return chunk;
+    return NULL;
 }
 
