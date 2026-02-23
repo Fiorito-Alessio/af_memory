@@ -3,20 +3,6 @@
 
 #include <stddef.h>
 
-// Bitwise manipulation macros
-#define PACK(size, is_free) ((size) | (is_free))
-#define GET_SIZE(size)      ((size) & ~1)
-#define IS_FREE(size)       ((size) & 1)
-
-// Get its own footer for af_free to work properly
-#define GET_FOOTER(header_ptr) \
-((size_t *)((char *)(header_ptr) + GET_SIZE((header_ptr)->size) - sizeof(size_t)))
-
-// Get prev chunk footer for af_free to work properly
-#define GET_PREV_FOOTER(header_ptr) \
-((size_t *)((char *)(header_ptr) - sizeof(size_t)))
-
-
 /*
  * Contains all metadata for a memory chunk.
  * is_free / in_use bit is stored in size (multiple of 8)
@@ -36,5 +22,32 @@ struct chunk_header
         char payload[0];
     };
 };
+
+static inline size_t pack(size_t size, size_t is_free)
+{
+    return (size | is_free);
+}
+
+static inline size_t get_size(size_t header_size)
+{
+    return (header_size & ~1UL);
+}
+
+static inline size_t is_free(size_t header_size)
+{
+    return (header_size & 1UL);
+}
+
+// Get its own footer for af_free to work properly
+static inline size_t *get_footer(struct chunk_header *head_ptr)
+{
+    return ((size_t *)((char *)(head_ptr) + get_size((head_ptr)->size) - sizeof(size_t)));
+}
+
+// Get prev chunk footer for af_free to work properly
+static inline size_t *get_prev_footer(struct chunk_header *head_ptr)
+{
+    return ((size_t *)((char *)(head_ptr) - sizeof(size_t)));
+}
 
 #endif
