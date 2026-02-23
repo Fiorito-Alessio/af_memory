@@ -10,4 +10,5 @@ target_sources(af_memory PRIVATE
         src/main.c
         src/memory_manager.c
         src/seg_free_list.c
+        src/splitter.c
 )

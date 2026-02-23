@@ -96,4 +96,3 @@ struct chunk_header *get_chunk(size_t size)
 
     return NULL;
 }
-
