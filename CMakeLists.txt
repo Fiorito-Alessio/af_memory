@@ -8,4 +8,6 @@ add_executable(af_memory)
 target_include_directories(af_memory PRIVATE include)
 target_sources(af_memory PRIVATE
         src/main.c
+        src/memory_manager.c
+        src/seg_free_list.c
 )
