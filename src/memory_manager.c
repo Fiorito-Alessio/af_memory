@@ -9,6 +9,9 @@
 #define MAP_ANON MAP_ANONYMOUS
 #endif
 
+/* Add fake chunk at each edge so af_free doesn't try to coalesce when it's near
+ * these bounds
+ */
 static void add_boundaries(void *heap_head, size_t size)
 {
     size_t *fake_foot = (size_t *)heap_head;
