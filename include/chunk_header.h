@@ -50,4 +50,9 @@ static inline size_t *get_prev_footer(struct chunk_header *head_ptr)
     return ((size_t *)((char *)(head_ptr) - sizeof(size_t)));
 }
 
+static inline struct chunk_header *get_header(void *ptr)
+{
+    return (struct chunk_header *)((char *)ptr - sizeof(size_t));
+}
+
 #endif

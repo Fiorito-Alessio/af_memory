@@ -20,7 +20,7 @@ static size_t get_bucket_index(size_t size)
     }
 }
 
-static void remove_chunk(struct chunk_header *chunk)
+void remove_chunk(struct chunk_header *chunk)
 {
     if (chunk == NULL)
     {
