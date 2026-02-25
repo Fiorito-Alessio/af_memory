@@ -25,7 +25,8 @@ To keep things fast and prevent fragmentation, it uses a few classic architectur
 It works great, but it has boundaries compared to industrial allocators like `jemalloc`:
 * **Global Lock:** It uses a single global mutex. If you use this in a massive async web server, threads will fight for the lock and bottleneck. Industrial allocators use thread-local arenas to fix this.
 * **Thrashing:** Because it aggressively unmaps empty heaps, an app that constantly allocates and frees exactly 4MB on a loop will force the CPU to ping-pong between `mmap` and `munmap`.
-* **Security:** It lacks modern exploit mitigations (like guard pages). Use it for personal projects and emulators, not for banking software.
+* **Security:** It lacks modern exploit mitigations (like guard pages). Use it for personal 
+  projects.
 
 ## Installation
 
