@@ -30,7 +30,7 @@ It works great, but it has boundaries compared to industrial allocators like `je
 
 ## Installation
 
-You can install it locally to your home directory so you don't need root privileges. You just need CMake and a C compiler.
+You can install it locally to your home directory. You just need CMake and a C compiler.
 
 ```bash
 mkdir build && cd build
