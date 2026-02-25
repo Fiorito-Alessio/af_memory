@@ -4,9 +4,9 @@ project(af_memory C)
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
-add_executable(af_memory)
+add_library(af_memory SHARED)
 
-target_include_directories(af_memory PRIVATE include)
+target_include_directories(af_memory PUBLIC include)
 
 target_sources(af_memory PRIVATE
         src/main.c
@@ -36,3 +36,6 @@ target_compile_options(af_memory PRIVATE
 target_link_options(af_memory PRIVATE
         -fsanitize=undefined
 )
+
+install(TARGETS af_memory DESTINATION lib)
+install(FILES include/af_memory.h DESTINATION include)
