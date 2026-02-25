@@ -44,7 +44,7 @@ make install
 This places the header in ~/.local/include and the shared library (.dylib or .so) in ~/.local/lib.
 
 ## Usage
-```
+```c++
 #include <af_memory.h>
 #include <stdio.h>
 
