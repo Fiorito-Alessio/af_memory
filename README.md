@@ -1,5 +1,5 @@
 # af_memory
-This is af_memory, a custom, thread-safe, POSIX-compliant memory allocator library written in C.
+af_memory is a custom, thread-safe, POSIX-compliant memory allocator library written in C.
 
 I built this to understand exactly how the operating system manages RAM under the hood. It provides a complete, drop-in replacement for the standard malloc, free, calloc, and realloc functions. It is packaged as a shared library that you can install and link against any of your C projects.
 
