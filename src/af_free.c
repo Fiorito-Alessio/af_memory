@@ -1,6 +1,10 @@
 #include "af_free.h"
 #include "chunk_header.h"
 #include "seg_free_list.h"
+#include <sys/mman.h>
+
+#define HEAP_REQ_SIZE (4 * 1024 * 1024)
+#define FULL_HEAP_MAX_SIZE (HEAP_REQ_SIZE - (2 * sizeof(size_t)))
 
 void af_free(void *ptr)
 {
@@ -35,7 +39,15 @@ void af_free(void *ptr)
     size_t *new_foot = get_footer(head);
     *new_foot = head->size;
 
-    add_chunk(head);
+    if (tot_size == FULL_HEAP_MAX_SIZE)
+    {
+        void *mmap_ptr = (char *)head - sizeof(size_t);
+        munmap(mmap_ptr, HEAP_REQ_SIZE);
+    }
+    else
+    {
+        add_chunk(head);
+    }
 
     pthread_mutex_unlock(&malloc_mutex);
 }
