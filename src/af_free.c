@@ -9,6 +9,8 @@ void af_free(void *ptr)
         return;
     }
 
+    pthread_mutex_lock(&malloc_mutex);
+
     struct chunk_header *head = get_header(ptr);
     size_t tot_size = get_size(head->size);
 
@@ -34,4 +36,6 @@ void af_free(void *ptr)
     *new_foot = head->size;
 
     add_chunk(head);
+
+    pthread_mutex_unlock(&malloc_mutex);
 }

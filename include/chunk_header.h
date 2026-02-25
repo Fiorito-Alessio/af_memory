@@ -2,6 +2,9 @@
 #define CHUNK_HEADER_H
 
 #include <stddef.h>
+#include <pthread.h>
+
+extern pthread_mutex_t malloc_mutex;
 
 /*
  * Contains all metadata for a memory chunk.
