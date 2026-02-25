@@ -14,4 +14,11 @@ target_sources(af_memory PRIVATE
         src/af_malloc.c
         src/af_free.c
         src/af_calloc.c
+        src/af_realloc.c
+)
+
+target_compile_options(af_memory PRIVATE
+        -Wall
+        -Wextra
+        -g
 )
