@@ -19,7 +19,7 @@ void *af_malloc(size_t size)
     pthread_mutex_lock(&malloc_mutex);
 
     size_t tot_size = size + (2 * sizeof(size_t));
-    size_t align_16_size = (tot_size + 15) & ~15;
+    size_t align_16_size = (tot_size + (size_t)15) & (size_t)~15;
 
     struct chunk_header *chunk = get_chunk(align_16_size);
     if (chunk == NULL)

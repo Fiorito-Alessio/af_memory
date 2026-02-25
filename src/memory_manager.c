@@ -23,7 +23,7 @@ static void add_boundaries(void *heap_head, size_t size)
 
 struct chunk_header *request_new_heap(size_t size)
 {
-    const size_t PAGE_SIZE = sysconf(_SC_PAGESIZE);
+    const size_t PAGE_SIZE = (size_t)sysconf(_SC_PAGESIZE);
     const size_t ALIGNED_SIZE = (size + (PAGE_SIZE - 1)) & ~(PAGE_SIZE - 1);
 
     void *heap_head = mmap(NULL, ALIGNED_SIZE, PROT_READ | PROT_WRITE, MAP_ANON |

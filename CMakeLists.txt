@@ -25,9 +25,9 @@ target_link_libraries(af_memory PRIVATE Threads::Threads)
 target_compile_options(af_memory PRIVATE
         -Wall
         -Wextra
-        -Wpedantic
         -Wshadow
         -Wconversion
+        -Werror
         -g
         -fsanitize=undefined
         -fno-omit-frame-pointer
