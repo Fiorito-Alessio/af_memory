@@ -13,4 +13,5 @@ target_sources(af_memory PRIVATE
         src/splitter.c
         src/af_malloc.c
         src/af_free.c
+        src/af_calloc.c
 )
