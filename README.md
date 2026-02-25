@@ -2,7 +2,11 @@
 
 A custom, thread-safe memory allocator written in C.
 
-I wanted to see what actually happens under the hood when you call `malloc` and `free`, so I built my own from scratch. It is a fully functional, POSIX-compliant drop-in replacement packaged as a shared library.
+I wanted to see what actually happens under the hood when you call `malloc`, `calloc`, `realloc` 
+and 
+`free`, 
+so I 
+built my own from scratch. It is a fully functional, POSIX-compliant drop-in replacement packaged as a shared library.
 
 ## How it works
 
